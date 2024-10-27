@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Deliveries - FoodShare</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .map-container {
+            width: 80%;
+            height: 70%;
+            margin: 20px 0;
+            border: 2px solid #2196F3;
+            border-radius: 10px;
+        }
+        .back-btn {
+            background: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Track Deliveries</h1>
+    <div id="map" class="map-container"></div>
+    <button class="back-btn" onclick="goBack()">Back to Dashboard</button>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Delivery location for Guna, MP (latitude, longitude)
+        const deliveryLocation = {
+            lat: 24.6498, // Guna coordinates
+            lng: 77.3197
+        };
+
+        // Initialize the map with user's and delivery location
+        function initMap(userLocation) {
+            const map = L.map('map').setView(userLocation, 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Add user's location marker
+            L.marker(userLocation).addTo(map)
+                .bindPopup('Your Location')
+                .openPopup();
+
+            // Add delivery location marker
+            L.marker([deliveryLocation.lat, deliveryLocation.lng]).addTo(map)
+                .bindPopup('Delivery Location (Guna, MP)')
+                .openPopup();
+        }
+
+        // Function to get user's location
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    initMap(userLocation); // Initialize map with user's location
+                }, () => {
+                    alert("Unable to retrieve your location.");
+                    initMap([24.6498, 77.3197]); // Fallback to Guna coordinates
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                initMap([24.6498, 77.3197]); // Fallback to Guna coordinates
+            }
+        }
+
+        // Call the function to get user's location on load
+        window.onload = function() {
+            getUserLocation();
+        };
+
+        function goBack() {
+            window.location.href = 'delhievery-dashboard.html'; // Redirect to the dashboard
+        }
+    </script>
+</body>
+</html>

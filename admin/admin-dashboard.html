@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FoodShare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Admin Dashboard</h1>
+        <div class="stats">
+            <p>Total Users: <span id="total-users">100</span></p>
+            <p>Total Donations: <span id="total-donations">250</span></p>
+        </div>
+        <button class="view-users" onclick="viewUsers()">View Users</button>
+        <button class="manage-donations" onclick="manageDonations()">Manage Donations</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

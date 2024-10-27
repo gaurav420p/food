@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e2e2e2, #ffffff);
+    font-family: 'Arial', sans-serif;
+}
+
+.dashboard-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.stats {
+    margin-bottom: 20px;
+}
+
+.stats p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.view-users, .manage-donations, .logout-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin: 10px 0; /* Add margin between buttons */
+}
+
+.view-users {
+    background: #2196F3;
+}
+
+.view-users:hover {
+    background: #1976D2;
+    transform: translateY(-2px);
+}
+
+.manage-donations {
+    background: #4CAF50;
+}
+
+.manage-donations:hover {
+    background: #388E3C;
+    transform: translateY(-2px);
+}
+
+.logout-btn {
+    background: #e57373;
+}
+
+.logout-btn:hover {
+    background: #d32f2f;
+    transform: translateY(-2px);
+}

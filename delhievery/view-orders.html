@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-scale, initial-scale=1.0">
+    <title>View Orders - FoodShare</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .orders-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .back-btn, .take-order-btn {
+            background: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover, .take-order-btn:hover {
+            background: #1976D2;
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="orders-container">
+        <h1>View Orders</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Food Item</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="orders-list">
+                <!-- Orders will be displayed here -->
+            </tbody>
+        </table>
+        <button class="back-btn" onclick="goBack()">Back to Dashboard</button>
+    </div>
+
+    <!-- Notification Element -->
+    <div class="notification" id="notification">Order taken successfully!</div>
+
+    <script>
+        // Simulated data for orders
+        const orders = [
+            { id: 1, foodItem: "Rice Bags", quantity: 5, status: "Delivered" },
+            { id: 2, foodItem: "Canned Vegetables", quantity: 10, status: "Pending" },
+            { id: 3, foodItem: "Breads", quantity: 8, status: "In Transit" },
+            { id: 4, foodItem: "Fruits", quantity: 20, status: "Delivered" },
+        ];
+
+        // Function to display orders in the table
+        function displayOrders() {
+            const ordersList = document.getElementById('orders-list');
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.foodItem}</td>
+                    <td>${order.quantity}</td>
+                    <td>${order.status}</td>
+                    <td>
+                        <button class="take-order-btn" onclick="takeOrder(${order.id})">Take Order</button>
+                    </td>
+                `;
+                ordersList.appendChild(row);
+            });
+        }
+
+        // Function to handle order taking and redirect to tracking page
+        function takeOrder(orderId) {
+            showNotification(); // Show notification
+            setTimeout(() => {
+                window.location.href = 'tracking.html'; // Redirect to the tracking page
+            }, 3000); // Redirect after 3 seconds
+        }
+
+        // Function to show notification
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 500); // Hide notification after 3 seconds
+        }
+
+        // Call the function to display orders on load
+        window.onload = function() {
+            displayOrders();
+        };
+
+        function goBack() {
+            window.location.href = 'delhievery-dashboard.html'; // Redirect to the dashboard
+        }
+    </script>
+</body>
+</html>

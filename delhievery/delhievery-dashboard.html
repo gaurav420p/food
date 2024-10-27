@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delhievery Dashboard - FoodShare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Delhievery Dashboard</h1>
+        <div class="stats">
+            <p>Pending Deliveries: <span id="pending-deliveries">5</span></p>
+            <p>Total Deliveries: <span id="total-deliveries">50</span></p>
+        </div>
+        <h2>Donated Foods</h2>
+        <ul id="food-list">
+            <!-- Donated foods will be displayed here -->
+        </ul>
+        <button class="view-orders" onclick="viewOrders()">View Orders</button>
+        <button class="track-deliveries" onclick="trackDeliveries()">Track Deliveries</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
